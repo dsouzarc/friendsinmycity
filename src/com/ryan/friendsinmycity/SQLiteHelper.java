@@ -5,9 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
  
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils.InsertHelper;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -54,6 +56,42 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         final SQLiteDatabase db = this.getWritableDatabase();
         db.insert(TABLE_FRIENDS, null, theValues);
         db.close();
+    }
+    
+    public void addFriends(final Friend[] theFriends) { 
+        final SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        
+        for(Friend theFriend : theFriends) { 
+            final ContentValues theValues = new ContentValues();
+            theValues.put(KEY_ID, theFriend.getId());
+            theValues.put(KEY_NAME, theFriend.getName());
+            theValues.put(KEY_PROFILE_PHOTO_LINK, theFriend.getProfilePhotoLink());
+            theValues.put(KEY_CITY, theFriend.getLastCity());
+            
+            db.insert(TABLE_FRIENDS, null, theValues);
+        }
+        
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+    
+    public void addFriends(final List<Friend> theFriends) { 
+        final SQLiteDatabase db = this.getWritableDatabase();
+        db.beginTransaction();
+        
+        for(Friend theFriend : theFriends) { 
+            final ContentValues theValues = new ContentValues();
+            theValues.put(KEY_ID, theFriend.getId());
+            theValues.put(KEY_NAME, theFriend.getName());
+            theValues.put(KEY_PROFILE_PHOTO_LINK, theFriend.getProfilePhotoLink());
+            theValues.put(KEY_CITY, theFriend.getLastCity());
+            
+            db.insert(TABLE_FRIENDS, null, theValues);
+        }
+        
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
     
     public Friend getFriend(final int ID) { 
@@ -122,5 +160,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         final Cursor cursor = db.rawQuery(query, null);
         cursor.close();
         return cursor.getCount();
+    }
+    
+    public void deleteAllFriends() { 
+        final SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_FRIENDS, null, null);
+        db.close();
     }
 }
