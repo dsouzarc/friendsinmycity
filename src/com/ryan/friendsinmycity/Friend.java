@@ -2,20 +2,21 @@ package com.ryan.friendsinmycity;
 
 public class Friend {
     
-    private final long id;
+    private final int id;
     
     private final String name;
     private final String profilePhotoLink;
         
     private String lastCity;
     
-    public Friend(final long id, final String name, final String profilePhotoLink) { 
+    public Friend(final int id, final String name, final String profilePhotoLink) { 
         this.id = id;
         this.name = name;
         this.profilePhotoLink = profilePhotoLink;
+        this.lastCity = "";
     }
     
-    public Friend(final long id, final String name, final String profilePhotoLink, final String lastCity) { 
+    public Friend(final int id, final String name, final String profilePhotoLink, final String lastCity) { 
         this.id = id;
         this.name = name;
         this.profilePhotoLink = profilePhotoLink;
@@ -39,7 +40,7 @@ public class Friend {
     /**
      * @return the id
      */
-    public long getId() {
+    public int getId() {
         return id;
     }
 
