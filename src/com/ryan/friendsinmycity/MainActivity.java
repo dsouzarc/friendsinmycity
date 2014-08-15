@@ -2,6 +2,7 @@ package com.ryan.friendsinmycity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,6 +13,13 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        
+
+    }
+    
+    public void log(final String message) { 
+        Log.e("com.ryan.friendsinmycity", message);
     }
 
 
