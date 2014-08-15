@@ -56,4 +56,9 @@ public class Friend {
     public String getProfilePhotoLink() {
         return profilePhotoLink;
     }
+    
+    @Override
+    public String toString() { 
+        return "Name: " + name + "\tCity: " + lastCity + "\tID: " + id;
+    }
 }
